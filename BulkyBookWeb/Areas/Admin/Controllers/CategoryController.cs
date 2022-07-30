@@ -54,7 +54,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 return NotFound();
             }
             //var categoryFromDb = _db.Categories.Find(id);
-            var categoryFromDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            var categoryFromDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id); //This allows you to only update any specific data property instead of all even if you only need to update 1
             //var categoryFromDbSingle = _db.Categories.SingleOrDefault(u => u.Id == id);
 
             if (categoryFromDbFirst == null)

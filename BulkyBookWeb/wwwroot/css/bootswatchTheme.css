@@ -3044,6 +3044,9 @@ textarea.form-control-lg {
     border-radius: 0.2rem;
 }
 
+.dropdown:hover .dropdown-menu {display: block;}
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu
+
 .input-group-lg > .form-select,
 .input-group-sm > .form-select {
     padding-right: 3rem;

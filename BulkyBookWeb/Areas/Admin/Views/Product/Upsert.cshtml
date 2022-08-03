@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model BulkyBook.Models.ViewModel.ProductVM 
 
 <form method="post" asp-action="Upsert">
     <div class="border p-3 mt-4">
@@ -8,60 +8,60 @@
         </div>
         @*<div asp-validation-summary="All"></div>*@
         <div class="mb-3">
-            <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
+            <label asp-for="product.Title"></label>
+            <input asp-for="product.Title" class="form-control" />
+            <span asp-validation-for="product.Title" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description" rows="3" class="form-control"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
+            <label asp-for="product.Description"></label>
+            <textarea asp-for="product.Description" rows="3" class="form-control"></textarea>
+            <span asp-validation-for="product.Description" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="ISBN"></label>
-            <input asp-for="ISBN" class="form-control" />
-            <span asp-validation-for="ISBN" class="text-danger"></span>
+            <label asp-for="product.ISBN"></label>
+            <input asp-for="product.ISBN" class="form-control" />
+            <span asp-validation-for="product.ISBN" class="text-danger"></span>
         </div>
 
          <div class="mb-3">
-            <label asp-for="Author"></label>
-            <input asp-for="Author" class="form-control" />
-            <span asp-validation-for="Author" class="text-danger"></span>
+            <label asp-for="product.Author"></label>
+            <input asp-for="product.Author" class="form-control" />
+            <span asp-validation-for="product.Author" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="ListPrice"></label>
-            <input asp-for="ListPrice" class="form-control" />
-            <span asp-validation-for="ListPrice" class="text-danger"></span>
+            <label asp-for="product.ListPrice"></label>
+            <input asp-for="product.ListPrice" class="form-control" />
+            <span asp-validation-for="product.ListPrice" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Price"></label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger"></span>
+            <label asp-for="product.Price"></label>
+            <input asp-for="product.Price" class="form-control" />
+            <span asp-validation-for="product.Price" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Price50"></label>
-            <input asp-for="Price50" class="form-control" />
-            <span asp-validation-for="Price50" class="text-danger"></span>
+            <label asp-for="product.Price50"></label>
+            <input asp-for="product.Price50" class="form-control" />
+            <span asp-validation-for="product.Price50" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Price100"></label>
-            <input asp-for="Price100" class="form-control" />
-            <span asp-validation-for="Price100" class="text-danger"></span>
+            <label asp-for="product.Price100"></label>
+            <input asp-for="product.Price100" class="form-control" />
+            <span asp-validation-for="product.Price100" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="CategoryId"></label>
-            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select">
+            <label asp-for="product.CategoryId"></label>
+            <select asp-for="product.CategoryId" asp-items="@Model.CategoryList" class="form-select">
                 <option disabled selected>--Select Category</option>
             </select>
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
+            <span asp-validation-for="product.CategoryId" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="CoverTypeId"></label>
-            <select asp-for="CoverTypeId" asp-items="@(ViewData["CoverTypeList"] as IEnumerable<SelectListItem>)"  class="form-select">
+            <label asp-for="product.CoverTypeId"></label>
+            <select asp-for="product.CoverTypeId" asp-items="@Model.CoverTypeList"  class="form-select">
                 <option disabled selected>--Select Cover Type</option>
             </select>
-            <span asp-validation-for="CoverTypeId" class="text-danger"></span>
+            <span asp-validation-for="product.CoverTypeId" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:150px">Update</button>

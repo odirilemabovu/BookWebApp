@@ -49,7 +49,20 @@
             <input asp-for="Price100" class="form-control" />
             <span asp-validation-for="Price100" class="text-danger"></span>
         </div>
-
+        <div class="mb-3">
+            <label asp-for="CategoryId"></label>
+            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select">
+                <option disabled selected>--Select Category</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CoverTypeId"></label>
+            <select asp-for="CoverTypeId" asp-items="@(ViewData["CoverTypeList"] as IEnumerable<SelectListItem>)"  class="form-select">
+                <option disabled selected>--Select Cover Type</option>
+            </select>
+            <span asp-validation-for="CoverTypeId" class="text-danger"></span>
+        </div>
 
         <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
         <a asp-controller="CoverType" asp-action="Index" class="btn btn-secondary" style="width:150px">
@@ -59,6 +72,6 @@
 </form>
 @section Scripts{
     @{
-        <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
     }
 }

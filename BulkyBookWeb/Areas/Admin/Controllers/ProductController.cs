@@ -10,10 +10,12 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public ProductController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
@@ -57,7 +59,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM obj, IFormFile file)
+        public IActionResult Upsert(ProductVM obj, IFormFile file, IWebHostEnvironment hostEnvironment)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +87,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return View(coverTypeFromDbFirst);
         }
 
-        [HttpPost,ActionName("Delete")]
+        [HttpDelete,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {

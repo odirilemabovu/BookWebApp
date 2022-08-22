@@ -11,10 +11,12 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
@@ -137,6 +139,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             if (id == null || id == 0)
             {
@@ -160,6 +163,9 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 =======
             var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
 >>>>>>> Stashed changes
+=======
+            var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+>>>>>>> 23b200ffe4b5bb5050582321221ba3e10b507efe
             if (obj == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });

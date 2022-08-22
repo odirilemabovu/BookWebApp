@@ -28,7 +28,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         {
             ProductVM productVM = new()
             {
-                product = new(),
+                Product = new(),
                 CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
                 {
                     Text = i.Name,
@@ -50,7 +50,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             }
             else
             {
-                productVM.product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id); //loads data in view
+                productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id); //loads data in view
                 return View(productVM);
 
                 //update product
@@ -75,9 +75,9 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
 
                     //Deleting/Replacing an already existing image during update function
-                    if (obj.product.ImageUrl != null)
+                    if (obj.Product.ImageUrl != null)
                     {
-                        var oldImagePath = Path.Combine(wwwRootPath, obj.product.ImageUrl.TrimStart('\\'));
+                        var oldImagePath = Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
                         if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
@@ -88,18 +88,18 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                     {
                         file.CopyTo(fileStreams);
                     }
-                    obj.product.ImageUrl = @"\images\products\" + fileName + extension;
+                    obj.Product.ImageUrl = @"\images\products\" + fileName + extension;
 
 
                 }
 
-                if (obj.product.Id == 0)
+                if (obj.Product.Id == 0)
                 {
-                    _unitOfWork.Product.Add(obj.product);
+                    _unitOfWork.Product.Add(obj.Product);
                 }
                 else
                 {
-                    _unitOfWork.Product.Update(obj.product);
+                    _unitOfWork.Product.Update(obj.Product);
                 }
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
@@ -109,29 +109,11 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return View(obj);
         }
 
-       
-
-        //[HttpDelete,ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult DeletePOST(int? id)
-        //{
-        //    var obj = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _unitOfWork.CoverType.Remove(obj);
-        //    _unitOfWork.Save();
-        //    TempData["success"] = "Cover Type Updated Successfully";//The temporary notification on the top left corner
-        //    return RedirectToAction("Index");
-        //}
-
-
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()
         {
-            var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+            var productList = _unitOfWork.Product.GetAll(includeProperties:"Category,CoverType");
             return Json(new { data = productList });
         }
 
@@ -139,33 +121,9 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-
-            var coverTypeFromDbFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
-
-            if (coverTypeFromDbFirst == null)
-            {
-                return NotFound();
-            }
-            return View(coverTypeFromDbFirst);
-        }
-
-        [HttpPost,ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
-        {
-            var obj = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
-=======
             var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
->>>>>>> Stashed changes
-=======
-            var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
->>>>>>> 23b200ffe4b5bb5050582321221ba3e10b507efe
+
+
             if (obj == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });

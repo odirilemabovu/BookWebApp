@@ -383,6 +383,9 @@ namespace BulkyBookWeb.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             modelBuilder.Entity("BulkyBook.Models.Product", b =>
                 {

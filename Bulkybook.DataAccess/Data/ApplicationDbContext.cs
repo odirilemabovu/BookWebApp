@@ -13,5 +13,10 @@ namespace BulkyBook.DataAccess
         public DbSet<Category> Categories { get; set; }
         public DbSet<CoverType> CoverTypes { get; set; }
         public DbSet<Product> Product { get; set; }
+<<<<<<< Updated upstream
+=======
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Company> Companies { get; set; }
+>>>>>>> Stashed changes
     }
 }
